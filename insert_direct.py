@@ -9,5 +9,5 @@ columns = '"ID_CARTOGRAFICO", "NOM_APOYO", "ALTURA", "MATERIAL", "ESTRUCTURA", "
           '"INFR_F_PUESTA_SERVICIO", "INFR_NORMA", "VALOR_ESFUERZO", "INFR_PERTENENCIA"'
 
 insertQuery = "COPY Infraestructura_original(" + columns + ") FROM 'D:/08102018/Infraesctrutura/infraestructura.csv' " \
-                      " DELIMITER ';' CSV HEADER ENCODING 'ISO_8859_5';"
+                      " DELIMITER ';' CSV HEADER ENCODING 'ISO_8859_6';"
 db.execute_query(insertQuery)

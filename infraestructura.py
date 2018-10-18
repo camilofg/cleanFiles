@@ -5,7 +5,7 @@ import sys
 import postgres_conn as pgConn
 import codecs
 
-listSearch = ['LAR412_13.2', 'CS 275-2 ', 'CS 276', 'LAR306']
+listSearch = ['LAR306', 'LAR412_13.2', 'CS 275-2 ', 'CS 276']
 strFile = []
 columns = ""
 numColumns = 0
@@ -32,7 +32,7 @@ if sys.argv[1] is not None:
 
 
     print('route is:' + sys.argv[1])
-    with codecs.open(sys.argv[1], 'r', encoding='utf-8', errors='ignore') as fp:
+    with codecs.open(sys.argv[1], 'r', encoding='ISO_8859_6', errors='ignore') as fp:
         line = fp.readline()
         numColumns = len(line.split(';'))
         while line:
@@ -70,10 +70,10 @@ if sys.argv[1] is not None:
             cntLine += 1
             line = fp.readline()
 
-    with codecs.open('D:/TestFileDestination/Infraestructura_modified.csv', 'w', 'utf-8') as f:
+    with codecs.open('D:/TestFileDestination/Infraestructura_modified.csv', 'w', 'ISO_8859_6') as f:
         print(len(strFile))
         for item in strFile:
             f.write(item)
-        insertQuery = "COPY Infraestructura_original(" + columns + ") FROM 'D:/08102018/Infraesctrutura/infraestructura.csv' " \
-                      " DELIMITER ';' CSV HEADER;"
+        insertQuery = "COPY Infraestructura(" + columns + ") FROM 'D:/TestFileDestination/Infraestructura_modified.csv' " \
+                      " DELIMITER ';' CSV HEADER ENCODING 'ISO_8859_6';"
         db.execute_query(insertQuery)
